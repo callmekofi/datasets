@@ -186,7 +186,6 @@ class DatasetBuilder(registered.RegisteredDataset):
     """
     if data_dir:
       data_dir = os.fspath(data_dir)  # Pathlib -> str
-
     # For pickling:
     self._original_state = dict(
         data_dir=data_dir, config=config, version=version)
@@ -728,7 +727,8 @@ class DatasetBuilder(registered.RegisteredDataset):
 
     default_data_dir = file_utils.get_default_data_dir(
         given_data_dir=given_data_dir)
-    all_data_dirs = file_utils.list_data_dirs(given_data_dir=given_data_dir)
+    all_data_dirs = file_utils.list_data_dirs(
+        given_data_dir=given_data_dir, dataset=self.name)
 
     all_versions = set()
     requested_version_dirs = {}
